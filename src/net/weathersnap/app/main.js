@@ -1,7 +1,17 @@
-import { returnKey } from "../api/meteoCommunication.js";
+import { manipulationComponents } from "../manipulation/weatherManipulation.js";
 
-function main(){
-    console.log(returnKey());
+import { requestGeoCode } from "../api/meteoCommunication.js";
+
+function main(){    
+
+    const main
+
+    try{
+        
+        manipulationComponents();
+    }catch(error){
+        console.log(error);
+    }
 }
 
 main();
