@@ -1,4 +1,4 @@
-import { manipulationComponents, manipulationNextDays } from "../manipulation/weatherManipulation.js";
+import {manipulationComponents, manipulationNextDays} from "../manipulation/weatherManipulation.js";
 
 import { requestGeoCode } from "../api/meteoCommunication.js";
 import setupSearch from "../events/searchButton.js";
@@ -11,11 +11,9 @@ async function updateWeather(city = "Jaraguá do Sul"){
 
     try{
         const apiDataRealTime = await requestGeoCode(city);
-
         main_component.innerHTML = manipulationComponents(apiDataRealTime);
 
         const apiDataNextDays = await requestGeoCode(city, false);
-
         nextDays.innerHTML = manipulationNextDays(apiDataNextDays);
 
     }catch(error){
@@ -24,6 +22,8 @@ async function updateWeather(city = "Jaraguá do Sul"){
 }
 
 function main(){
+
+    //updateWeather()
     setupSearch(updateWeather)
 }
 

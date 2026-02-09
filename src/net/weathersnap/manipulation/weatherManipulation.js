@@ -1,4 +1,4 @@
-
+import {filterDescriptionWeatherToImage, filterDescriptionWeatherToMessage} from "../service/descriptionWeatherFilter.js"; 
 
 export function manipulationComponents(apiData){
     return `
@@ -25,15 +25,17 @@ function manipulationInformations(apiData){
 
     const dayWeek = Date(apiData["dt"]  * 1000);
 
-
     return `
             <div class="weather__informations flex flex-row justify-between items-start">
 
                 <div class="weather__city-date ">
                     <h2 class="weather__city 
-                    text-[1.25rem]
-                    font-bold">${apiData["name"]}, ${apiData["sys"]["country"]}</h2>
-                    <p class="weather__date"> ${dayWeek}, {data}</p>
+                    text-[0.75rem] font-bold
+                    md:text-[1.5rem]
+                    ">${apiData["name"]}, ${apiData["sys"]["country"]}</h2>
+                    <p class="weather__date text-[0.5rem]
+                    md:text-[1rem]
+                    "> ${dayWeek}, {data}</p>
                 </div>
 
                 <div class="weather__icon-functions
@@ -51,32 +53,38 @@ function manipulationInformations(apiData){
 
 function manipulationQuantity(apiData){
     return `
-        <div class="weather__quantity self-center flex flex-row gap-[1rem]">
-                <img src="" alt="Weather image">
-                <h2 class="weather__temperature text-[1rem]">
-                    ${Math.floor(apiData["main"]["temp"]) } °C
+        <div class="weather__quantity self-center flex flex-row items-center gap-[1rem]">
+                <img src="${filterDescriptionWeatherToImage(apiData)}" alt="Weather image"
+                class="h-[5rem]">
+                <h2 class="weather__temperature text-[3rem]
+                font-bold">
+                    ${Math.floor(apiData["main"]["temp"]) }°C
                 </h2>
         </div>
     `
 }
 
 function manipulationDetails(apiData){
+    const description = apiData["weather"][0]["description"];
+
+    const firstLetterCapital = description.charAt(0).toUpperCase();
+    const remainingDescription = description.slice(1);
     return `
         <div class="weather__details self-center">
 
             <h3 class="weather__period text-center">
-                ${apiData["weather"][0]["description"]}
+                ${firstLetterCapital+remainingDescription}
             </h3>
 
             <div class="weather__measurements flex flex-row gap-[1rem]">
                 
-                <div class="weather__wind">
-                    <img src="" alt="">
+                <div class="weather__wind flex flex-row gap-[0.5rem]">
+                    <img src="./assets/wind.svg" alt="">
                     <p>${apiData["wind"]["speed"]} km/h</p>
                 </div>
 
-                <div class="weather__umidity">
-                    <img src="" alt="">
+                <div class="weather__umidity flex flex-row gap-[0.5rem]">
+                    <img src="./assets/droplet.svg" alt="">
                     <p>${apiData["main"]["humidity"]} %</p>
                 </div>
 
@@ -89,7 +97,7 @@ function manipulationDetails(apiData){
 function manipulationMessage(apiData){
     return `
         <div class="weather__message bg-[#02819E]">
-            <p class="text-center">{mensagem}</p>
+            <p class="text-center">${filterDescriptionWeatherToMessage(apiData)}</p>
         </div>    
     `
 }

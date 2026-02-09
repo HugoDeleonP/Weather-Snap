@@ -35,7 +35,7 @@ async function requestWeather(geoData){
 
 async function requestForecast(geoData){
     
-    const forecastCode = `https://api.openweathermap.org/data/2.5/forecast?lat=${geoData[0].lat}&lon=${geoData[0].lon}&cnt=10&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
+    const forecastCode = `https://api.openweathermap.org/data/2.5/forecast?lat=${geoData[0].lat}&lon=${geoData[0].lon}&cnt=12&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
 
     const responseForecast = await fetch(forecastCode);
     const dados = await responseForecast.json();
