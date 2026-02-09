@@ -1,5 +1,5 @@
 
-
+/*
 export default function chooseImageDescriptionWeather(){
     const weatherId = apiData["weather"][0]["id"]
 
@@ -49,4 +49,4 @@ export default function chooseImageDescriptionWeather(){
     }
     
     
-}
+}*/

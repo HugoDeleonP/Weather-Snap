@@ -7,7 +7,7 @@ const main_component = document.querySelector(".weather");
 const nextDays = document.querySelector(".weather__next-days");
 
 
-async function updateWeather(city){    
+async function updateWeather(city = "Jaraguá do Sul"){    
 
     try{
         const apiDataRealTime = await requestGeoCode(city);

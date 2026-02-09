@@ -1,4 +1,3 @@
-import chooseImageDescriptionWeather from "./descriptionWeatherManipulation";
 
 
 export function manipulationComponents(apiData){
@@ -40,10 +39,10 @@ function manipulationInformations(apiData){
                 <div class="weather__icon-functions
                 flex flex-row gap-[0.5rem]">
                     <img src="./assets/compare.svg" alt="" 
-                    class="bg-[rgb(182,214,253)] p-[0.4rem] rounded-[2rem]">
+                    class="bg-[#02819E] p-[0.4rem] rounded-[2rem]">
 
                     <img src="./assets/share.svg" alt="" 
-                    class="bg-[rgb(182,214,253)] p-[0.4rem] rounded-[2rem]">
+                    class="bg-[#02819E] p-[0.4rem] rounded-[2rem]">
                 </div>
 
             </div>
@@ -53,7 +52,7 @@ function manipulationInformations(apiData){
 function manipulationQuantity(apiData){
     return `
         <div class="weather__quantity self-center flex flex-row gap-[1rem]">
-                <img src="${chooseImageDescriptionWeather(apiData)}" alt="Weather image">
+                <img src="" alt="Weather image">
                 <h2 class="weather__temperature text-[1rem]">
                     ${Math.floor(apiData["main"]["temp"]) } °C
                 </h2>
@@ -89,7 +88,7 @@ function manipulationDetails(apiData){
 
 function manipulationMessage(apiData){
     return `
-        <div class="weather__message bg-[rgb(155,199,252)]">
+        <div class="weather__message bg-[#02819E]">
             <p class="text-center">{mensagem}</p>
         </div>    
     `
