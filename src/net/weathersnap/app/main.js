@@ -1,17 +1,30 @@
-import { manipulationComponents } from "../manipulation/weatherManipulation.js";
+import { manipulationComponents, manipulationNextDays } from "../manipulation/weatherManipulation.js";
 
 import { requestGeoCode } from "../api/meteoCommunication.js";
+import setupSearch from "../events/searchButton.js";
 
-function main(){    
+const main_component = document.querySelector(".weather");
+const nextDays = document.querySelector(".weather__next-days");
 
-    const main
+
+async function updateWeather(city){    
 
     try{
-        
-        manipulationComponents();
+        const apiDataRealTime = await requestGeoCode(city);
+
+        main_component.innerHTML = manipulationComponents(apiDataRealTime);
+
+        const apiDataNextDays = await requestGeoCode(city, false);
+
+        nextDays.innerHTML = manipulationNextDays(apiDataNextDays);
+
     }catch(error){
         console.log(error);
     }
 }
 
-main();
+function main(){
+    setupSearch(updateWeather)
+}
+
+main()

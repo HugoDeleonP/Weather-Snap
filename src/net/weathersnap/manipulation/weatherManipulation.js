@@ -1,39 +1,40 @@
-import { requestGeoCode } from "../api/meteoCommunication.js";
+import chooseImageDescriptionWeather from "./descriptionWeatherManipulation";
 
-const apiData = requestGeoCode("Jaraguá do Sul");
 
-export function manipulationComponents(){
+export function manipulationComponents(apiData){
     return `
-    <main class="weather
-    p-[1rem] flex flex-col gap-[1rem]
-    bg-[rgb(147,195,252)]  ">
+
 
         <div class="weather__time flex flex-col gap-[2rem] justify-between ">
 
-            ${manipulationInformations()}
-            ${manipulationQuantity()}
-            ${manipulationDetails()}
-            ${manipulationMessage()}
-            ${manipulationNextDays()}
+            ${manipulationInformations(apiData)}
+            ${manipulationQuantity(apiData)}
+            ${manipulationDetails(apiData)}
+            ${manipulationMessage(apiData)}
 
         </div>
 
 
 
-    </main>
     `
 
 }
 
-function manipulationInformations(){
+function manipulationInformations(apiData){
+
+    console.log(`${apiData.sys.country}`);
+
+    const dayWeek = Date(apiData["dt"]  * 1000);
+
+
     return `
             <div class="weather__informations flex flex-row justify-between items-start">
 
                 <div class="weather__city-date ">
                     <h2 class="weather__city 
                     text-[1.25rem]
-                    font-bold">${apiData.name}, ${apiData.country}</h2>
-                    <p class="weather__date"> {dia da semana}, {data}</p>
+                    font-bold">${apiData["name"]}, ${apiData["sys"]["country"]}</h2>
+                    <p class="weather__date"> ${dayWeek}, {data}</p>
                 </div>
 
                 <div class="weather__icon-functions
@@ -49,35 +50,35 @@ function manipulationInformations(){
     `
 }
 
-function manipulationQuantity(){
+function manipulationQuantity(apiData){
     return `
         <div class="weather__quantity self-center flex flex-row gap-[1rem]">
-                <img src="" alt="Weather image">
+                <img src="${chooseImageDescriptionWeather(apiData)}" alt="Weather image">
                 <h2 class="weather__temperature text-[1rem]">
-                    {quantidade de temperatura}
+                    ${Math.floor(apiData["main"]["temp"]) } °C
                 </h2>
         </div>
     `
 }
 
-function manipulationDetails(){
+function manipulationDetails(apiData){
     return `
         <div class="weather__details self-center">
 
             <h3 class="weather__period text-center">
-                {Tempo em que está}
+                ${apiData["weather"][0]["description"]}
             </h3>
 
             <div class="weather__measurements flex flex-row gap-[1rem]">
                 
                 <div class="weather__wind">
                     <img src="" alt="">
-                    <p>{velocidade de vento} km/h</p>
+                    <p>${apiData["wind"]["speed"]} km/h</p>
                 </div>
 
                 <div class="weather__umidity">
                     <img src="" alt="">
-                    <p>{percentual de umidade}%</p>
+                    <p>${apiData["main"]["humidity"]} %</p>
                 </div>
 
             </div>
@@ -86,7 +87,7 @@ function manipulationDetails(){
     `
 }
 
-function manipulationMessage(){
+function manipulationMessage(apiData){
     return `
         <div class="weather__message bg-[rgb(155,199,252)]">
             <p class="text-center">{mensagem}</p>
@@ -94,9 +95,8 @@ function manipulationMessage(){
     `
 }
 
-function manipulationNextDays(){
+export function manipulationNextDays(apiData){
     return `
-        <div class="weather__next-days">
 
         <h3>Próximos dias</h3>
 
@@ -122,6 +122,5 @@ function manipulationNextDays(){
 
         </div>
 
-    </div>
     `
 }
