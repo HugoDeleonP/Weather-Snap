@@ -3,7 +3,7 @@ const drizzle = [300, 301, 302, 310, 311, 312, 313, 314, 321];
 const rain = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531];
 const snow = [600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622];
 const atmosphere = [701, 711, 721, 731, 741, 751, 761, 762, 771, 781];
-const clear = 800;
+const clear = [800];
 const clouds = [801, 802, 803, 804];
 
 export function filterDescriptionWeatherToImage(apiData){
@@ -30,7 +30,7 @@ export function filterDescriptionWeatherToImage(apiData){
 
         return "../../../../assets/cloud-fog2-fill.svg";
 
-        case clear:
+        case clear.includes(weatherId):
 
         return "../../../../assets/clear-fill.svg";
 
@@ -73,7 +73,7 @@ export function filterDescriptionWeatherToMessage(apiData){
 
         return "O dia amanheceu misterioso. A cidade sumiu no meio da névoa.";
 
-        case clear:
+        case clear.includes(weatherId):
 
         return "Céu de brigadeiro! O dia está pedindo um passeio lá fora.";
 
