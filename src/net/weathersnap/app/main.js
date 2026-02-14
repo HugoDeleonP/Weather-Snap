@@ -3,8 +3,7 @@ import {manipulationComponents, manipulationNextDays} from "../manipulation/weat
 import { getAllDataWeather } from "../api/meteoCommunication.js";
 import setupSearch from "../events/searchButton.js";
 
-const main_component = document.querySelector(".weather");
-const nextDays = document.querySelector(".weather__next-days");
+const mainComponent = document.querySelector(".weather");
 
 
 async function updateWeather(city = "Jaraguá do Sul"){    
@@ -13,14 +12,20 @@ async function updateWeather(city = "Jaraguá do Sul"){
 
         const {weather, forecast} = await getAllDataWeather(city);
 
-        main_component.innerHTML = manipulationComponents(weather);
-        nextDays.innerHTML = manipulationNextDays(forecast);
+        mainComponent.innerHTML = manipulationComponents(weather);
 
+        const nextDaysComponent = document.querySelector(".weather__next-days");
+
+        if (nextDaysComponent) {
+            nextDaysComponent.innerHTML = manipulationNextDays(forecast);
+        } else {
+            console.error("Elemento .weather__next-days não encontrado no DOM.");
+        }
     }catch(error){
         console.error("Erro ao buscar dados metereológicos: ", error);
     }
 }
-    
+
 function main(){
 
     //updateWeather()

@@ -19,7 +19,10 @@ export function manipulationComponents(apiData){
 
         </div>
 
-        
+        <div class="weather__next-days flex flex-col gap-[1rem]">
+
+
+        </div>
         
 
     `
@@ -89,7 +92,7 @@ function manipulationDetails(apiData){
                 
                 <div class="weather__wind flex flex-row gap-[0.5rem]">
                     <img src="./assets/wind.svg" alt="">
-                    <p>${apiData["wind"]["speed"]} km/h</p>
+                    <p class="">${apiData["wind"]["speed"]} km/h</p>
                 </div>
 
                 <div class="weather__umidity flex flex-row gap-[0.5rem]">
@@ -129,37 +132,44 @@ export function manipulationNextDays(apiData){
         <h3 class="
             text-[0.75rem] font-bold
             md:text-[1.5rem]
-            rounded-md h-10 w-[25%]
-            bg-[#01586B]
         ">
         Próximos dias</h3>
 
         <div class="weather__days-information flex flex-row justify-between gap-[2rem]">
 
-            <div class="weather__first-day flex flex-col
-            rounded-md h-20 w-[100%]
+            <div class="weather__first-day flex flex-col justify-center items-center
+            rounded-md w-[100%] gap-[0.5rem] p-[1rem]
             bg-[#02819E]
             ">
-                <p class="weather__day">${returnDayWeek(firstDayDate)}</p>
-                <img src="${filterDescriptionWeatherToImage(firstDay)}" alt="" class="weather__image">
+                <p class="weather__day
+                text-[0.75rem] 
+                md:text-[1.25rem]">${returnDayWeek(firstDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(firstDay)}" alt="" class="weather__image
+                h-[2.5rem]">
                 <p class="weather__day-temperature">${Math.floor(firstDay["main"]["temp"]) }°C</p>
             </div>
 
-            <div class="weather__second-day
-            rounded-md h-20 w-[100%]
+            <div class="weather__second-day flex flex-col justify-center items-center
+            rounded-md w-[100%] gap-[0.5rem] p-[1rem]
             bg-[#02819E]
             ">
-                <p class="weather__day">${returnDayWeek(secondDayDate)}</p>
-                <img src="${filterDescriptionWeatherToImage(secondDay)}" alt="" class="weather__image">
+                <p class="weather__day
+                text-[0.75rem] 
+                md:text-[1.25rem]"">${returnDayWeek(secondDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(secondDay)}" alt="" class="weather__image
+                h-[2.5rem]">
                 <p class="weather__day-temperature">${Math.floor(secondDay["main"]["temp"]) }°C</p>
             </div>
 
-            <div class="weather__third-day
-            rounded-md h-20 w-[100%]
+            <div class="weather__third-day flex flex-col justify-center items-center
+            rounded-md w-[100%] gap-[0.5rem] p-[1rem]
             bg-[#02819E]
             ">
-                <p class="weather__day">${returnDayWeek(thirdDayDate)}</p>
-                <img src="${filterDescriptionWeatherToImage(thirdDay)}" alt="" class="weather__image">
+                <p class="weather__day
+                text-[0.75rem] 
+                md:text-[1.25rem]"">${returnDayWeek(thirdDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(thirdDay)}" alt="" class="weather__image
+                h-[2.5rem]">
                 <p class="weather__day-temperature ">${Math.floor(thirdDay["main"]["temp"]) }°C</p>
             </div>
 
