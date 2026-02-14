@@ -1,4 +1,5 @@
 import {filterDescriptionWeatherToImage, filterDescriptionWeatherToMessage} from "../service/descriptionWeatherFilter.js"; 
+import { returnDayWeek, returnDate } from "../service/weatherDate.js";
 
 export function manipulationComponents(apiData){
     return `
@@ -23,7 +24,9 @@ function manipulationInformations(apiData){
 
     console.log(`${apiData.sys.country}`);
 
-    const dayWeek = Date(apiData["dt"]  * 1000);
+    const weatherDate = new Date(apiData["dt"]  * 1000);
+    
+    
 
     return `
             <div class="weather__informations flex flex-row justify-between items-start">
@@ -35,7 +38,7 @@ function manipulationInformations(apiData){
                     ">${apiData["name"]}, ${apiData["sys"]["country"]}</h2>
                     <p class="weather__date text-[0.5rem]
                     md:text-[1rem]
-                    "> ${dayWeek}, {data}</p>
+                    "> ${returnDayWeek(weatherDate)}, ${returnDate(weatherDate)}</p>
                 </div>
 
                 <div class="weather__icon-functions
@@ -76,7 +79,7 @@ function manipulationDetails(apiData){
                 ${firstLetterCapital+remainingDescription}
             </h3>
 
-            <div class="weather__measurements flex flex-row gap-[1rem]">
+            <div class="weather__measurements flex flex-row gap-[1rem] px-[-2rem]">
                 
                 <div class="weather__wind flex flex-row gap-[0.5rem]">
                     <img src="./assets/wind.svg" alt="">
