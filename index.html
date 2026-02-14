@@ -20,13 +20,13 @@ text-white">
 
         <nav class="header__pages flex flex-row justify-between">
 
-            <div class="header__home flex flex-row items-center gap-[0.25rem] py-[0.25rem] px-[0.5rem]
+            <div class="header__home flex flex-row items-center gap-[0.25rem] py-[0.25rem] px-[0.5rem] rounded-md
              cursor-pointer hover:bg-[#02819E] duration-150">
                 <img src="./assets/house.svg" alt="" class="header__home-logo font-white">
                 <p>Início</p>
             </div>
 
-            <div class="header__compare flex flex-row items-center gap-[0.25rem] py-[0.25rem] px-[0.5rem]
+            <div class="header__compare flex flex-row items-center gap-[0.25rem] py-[0.25rem] px-[0.5rem] rounded-md
             cursor-pointer hover:bg-[#02819E] duration-150">
                 <img src="./assets/compare.svg" alt="" class="header__compare-logo">
                 <p>Comparar</p>
@@ -59,88 +59,99 @@ text-white">
 
         <div class="weather__time flex flex-col gap-[2rem] justify-between ">
 
-            <div class="weather__informations flex flex-row justify-between items-start ">
+            <div class="weather__informations flex flex-row justify-between items-start
+            rounded-md h-12 
+            bg-[#01586B] ">
 
                 <div class="weather__city-date ">
-                    <h2 class="weather__city 
-                    text-[0.75rem] font-bold
-                    md:text-[1.5rem]
-                    font-bold">{Cidade}, {local}</h2>
-                    <p class="weather__date text-[0.5rem]
-                    md:text-[1rem]
-                    "> {dia da semana}, {data}</p>
+                    
                 </div>
 
                 <div class="weather__icon-functions
                 flex flex-row gap-[0.5rem]">
-                    <img src="./assets/compare.svg" alt="" 
-                    class="bg-[#02819E] p-[0.4rem] rounded-[2rem] ">
-
-                    <img src="./assets/share.svg" alt="" 
-                    class="bg-[#02819E] p-[0.4rem] rounded-[2rem]">
+                    
                 </div>
 
             </div>
 
-            <div class="weather__quantity self-center flex flex-row items-center gap-[1rem]">
-                <img src="" alt="Weather image"
-                class="h-[5rem]">
+            <div class="weather__quantity self-center flex flex-row items-center gap-[1rem]
+            rounded-md h-30 w-[50%]
+            bg-[#01586B] ">
+                <img src="" alt=""
+                class="">
+
                 <h2 class="weather__temperature text-[1rem] self-center 
                 font-bold">
-                    {quantidade de temperatura}
                 </h2>
             </div>
 
-            <div class="weather__details self-center">
+            <div class="weather__details self-center
+            rounded-md h-20 w-[40%]
+            bg-[#01586B] ">
 
                 <h3 class="weather__period text-center">
-                    {Tempo em que está}
                 </h3>
 
                 <div class="weather__measurements flex flex-row gap-[1rem]">
                     
                     <div class="weather__wind flex flex-row gap-[0.5rem]">
-                        <img src="./assets/wind.svg" alt="">
-                        <p>{velocidade de vento} km/h</p>
                     </div>
 
                     <div class="weather__umidity flex flex-row gap-[0.5rem]">
-                        <img src="./assets/droplet.svg" alt="">
-                        <p>{percentual de umidade}%</p>
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="weather__message bg-[#02819E]">
-                <p class="text-center">{mensagem}</p>
+            <div class="weather__message 
+            self-center
+            bg-[#02819E]
+            rounded-md h-20 w-[40%]
+            ">
+                <p class="text-center"></p>
             </div>
 
         </div>
 
-        <div class="weather__next-days">
+        <div class="weather__next-days flex flex-col gap-[1rem]">
 
-            <h3>Próximos dias</h3>
+            <h3 class="
+            text-[0.75rem] font-bold
+            md:text-[1.5rem]
+            rounded-md h-10 w-[25%]
+            bg-[#01586B]
 
-            <div class="weather__days-information flex flex-row">
+            "></h3>
 
-                <div class="weather__first-day flex flex-col ">
-                    <p class="weather__day">{dia da semana}</p>
+            <div class="weather__days-information flex flex-row justify-between gap-[2rem]
+            ">
+
+                <div class="weather__first-day flex flex-col
+                rounded-md h-20 w-[100%]
+                bg-[#02819E]
+                ">
+                    <p class="weather__day"></p>
                     <img src="" alt="" class="weather__image">
-                    <p class="weather__day-temperature">{temperatura} °C</p>
+                    <p class="weather__day-temperature"></p>
                 </div>
 
-                <div class="weather__second-day">
-                    <p class="weather__day">{dia da semana}</p>
+                <div class="weather__second-day
+                rounded-md h-20 w-[100%]
+                bg-[#02819E]
+                ">
+                    <p class="weather__day"></p>
                     <img src="" alt="" class="weather__image">
-                    <p class="weather__day-temperature">{temperatura} °C</p>
+                    <p class="weather__day-temperature"></p>
                 </div>
 
-                <div class="weather__third-day">
-                    <p class="weather__day">{dia da semana}</p>
+                <div class="weather__third-day
+                rounded-md h-20 w-[100%]
+                bg-[#02819E]
+                ">
+                    <p class="weather__day"></p>
                     <img src="" alt="" class="weather__image">
-                    <p class="weather__day-temperature ">{temperatura} °C</p>
+                    <p class="weather__day-temperature "></p>
                 </div>
 
             </div>
