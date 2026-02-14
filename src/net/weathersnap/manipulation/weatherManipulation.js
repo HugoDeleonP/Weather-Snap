@@ -19,7 +19,8 @@ export function manipulationComponents(apiData){
 
         </div>
 
-
+        
+        
 
     `
 
@@ -111,28 +112,55 @@ function manipulationMessage(apiData){
 }
 
 export function manipulationNextDays(apiData){
+
+    const firstDay = apiData["list"][4];
+    const firstDayDate = new Date(firstDay["dt"] * 1000);
+
+    const secondDay = apiData["list"][12];
+    const secondDayDate = new Date(secondDay["dt"] * 1000);
+
+
+    const thirdDay = apiData["list"][20];
+    const thirdDayDate = new Date(thirdDay["dt"] * 1000);
+
+
     return `
 
-        <h3>Próximos dias</h3>
+        <h3 class="
+            text-[0.75rem] font-bold
+            md:text-[1.5rem]
+            rounded-md h-10 w-[25%]
+            bg-[#01586B]
+        ">
+        Próximos dias</h3>
 
-        <div class="weather__days-information flex flex-row">
+        <div class="weather__days-information flex flex-row justify-between gap-[2rem]">
 
-            <div class="weather__first-day flex flex-col ">
-                <p class="weather__day">{dia da semana}</p>
-                <img src="" alt="" class="weather__image">
-                <p class="weather__day-temperature">{temperatura} °C</p>
+            <div class="weather__first-day flex flex-col
+            rounded-md h-20 w-[100%]
+            bg-[#02819E]
+            ">
+                <p class="weather__day">${returnDayWeek(firstDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(firstDay)}" alt="" class="weather__image">
+                <p class="weather__day-temperature">${Math.floor(firstDay["main"]["temp"]) }°C</p>
             </div>
 
-            <div class="weather__second-day">
-                <p class="weather__day">{dia da semana}</p>
-                <img src="" alt="" class="weather__image">
-                <p class="weather__day-temperature">{temperatura} °C</p>
+            <div class="weather__second-day
+            rounded-md h-20 w-[100%]
+            bg-[#02819E]
+            ">
+                <p class="weather__day">${returnDayWeek(secondDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(secondDay)}" alt="" class="weather__image">
+                <p class="weather__day-temperature">${Math.floor(secondDay["main"]["temp"]) }°C</p>
             </div>
 
-            <div class="weather__third-day">
-                <p class="weather__day">{dia da semana}</p>
-                <img src="" alt="" class="weather__image">
-                <p class="weather__day-temperature ">{temperatura} °C</p>
+            <div class="weather__third-day
+            rounded-md h-20 w-[100%]
+            bg-[#02819E]
+            ">
+                <p class="weather__day">${returnDayWeek(thirdDayDate)}</p>
+                <img src="${filterDescriptionWeatherToImage(thirdDay)}" alt="" class="weather__image">
+                <p class="weather__day-temperature ">${Math.floor(thirdDay["main"]["temp"]) }°C</p>
             </div>
 
         </div>

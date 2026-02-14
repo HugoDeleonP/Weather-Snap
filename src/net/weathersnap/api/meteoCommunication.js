@@ -1,47 +1,44 @@
 const API_KEY = "bcd14548ccdb9f43c17c663a09759876";
 
-export async function requestGeoCode(city, inRealTime = true){
+async function requestGeoCode(city){
 
     const geoCode = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}`
 
     const responseGeoCode = await fetch(geoCode); 
     const geoData = await responseGeoCode.json();
 
-    console.log(geoData[0].name)
-
-    if(inRealTime){
-        return Promise.resolve(requestWeather(geoData));
-    }
-    else{
-        return Promise.resolve(requestForecast(geoData));
-    }
+    return geoData[0];  
 
 }
 
 
-async function requestWeather(geoData){
+async function requestWeather(lat, lon){
 
-    const weatherCode = `https://api.openweathermap.org/data/2.5/weather?lat=${geoData[0].lat}&lon=${geoData[0].lon}&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
+    const weatherCode = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
 
     const responseWeatherCode = await fetch(weatherCode);
-    const dados = await responseWeatherCode.json();
-
-    console.log(dados.name);
-
-    return dados;
+    return await responseWeatherCode.json();
 
 }
 
 
-async function requestForecast(geoData){
+async function requestForecast(lat, lon){
     
-    const forecastCode = `https://api.openweathermap.org/data/2.5/forecast?lat=${geoData[0].lat}&lon=${geoData[0].lon}&cnt=12&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
+    const forecastCode = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=23&appid=${API_KEY}&lang=pt_br&units=metric&type=hour`
 
     const responseForecast = await fetch(forecastCode);
-    const dados = await responseForecast.json();
+    return await responseForecast.json();
 
-    console.log(dados["list"][0]);
+}
 
-    return dados;
+export async function getAllDataWeather(city){
+    const coords = await requestGeoCode(city);
+   
+    const [weather, forecast] = await Promise.all([
+        requestWeather(coords.lat, coords.lon),
+        requestForecast(coords.lat, coords.lon)
+    ])
+
+    return {weather, forecast};
 
 }
