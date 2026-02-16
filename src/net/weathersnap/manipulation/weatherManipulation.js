@@ -4,7 +4,7 @@ import { returnDayWeek, returnDate } from "../service/weatherDate.js";
 export function manipulationComponents(apiData){
 
     const mainWeather = document.querySelector(".weather");
-    mainWeather.classList.toggle('animate-pulse') 
+    mainWeather.classList.remove('animate-pulse'); 
 
 
     return `
